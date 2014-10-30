@@ -23,53 +23,39 @@
 
 #import "KFEpubParser.h"
 
-
 @interface KFEpubParser ()
-
-
 @property (strong) NSXMLParser *parser;
 @property (strong) NSString *rootPath;
 @property (strong) NSMutableDictionary *items;
 @property (strong) NSMutableArray *spinearray;
-
-
 @end
-
 
 #define kMimeTypeEpub @"application/epub+zip"
 #define kMimeTypeiBooks @"application/x-ibooks+zip"
 
-
 @implementation KFEpubParser
 
-
-- (KFEpubKitBookType)bookTypeForBaseURL:(NSURL *)baseURL
+- (KFEpubKitBookType)bookTypeFromDocument:(DDXMLDocument *)document
 {
-    NSError *error = nil;
     KFEpubKitBookType bookType = KFEpubKitBookTypeUnknown;
     
-    NSURL *mimetypeURL = [baseURL URLByAppendingPathComponent:@"mimetype"];
-    NSString *mimetype = [[NSString alloc] initWithContentsOfURL:mimetypeURL encoding:NSASCIIStringEncoding error:&error];
+    DDXMLElement *root  = [document rootElement];
+    DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
+    defaultNamespace.name = @"default";
     
-    if (error)
-    {
-        return bookType;
-    }
-    
-    NSRange mimeRange = [mimetype rangeOfString:kMimeTypeEpub];
-    
-    if (mimeRange.location == 0 && mimeRange.length == 20)
-    {
+    NSString *ePubVersionString = [[[[root nodesForXPath:@"//default:package[1]" error:nil] firstObject] attributeForName:@"version"] stringValue];
+    CGFloat ePubVersion = [ePubVersionString floatValue];
+
+    if (ePubVersion >= 2.0 && ePubVersion < 3.0) {
         bookType = KFEpubKitBookTypeEpub2;
-    }
-    else if ([mimetype isEqualToString:kMimeTypeiBooks])
-    {
-        bookType = KFEpubKitBookTypeiBook;
+    } else if (ePubVersion >= 3.0 && ePubVersion < 4.0) {
+        bookType = KFEpubKitBookTypeEpub3;
+    } else {
+        bookType = KFEpubKitBookTypeUnknown;
     }
     
     return bookType;
 }
-
 
 - (KFEpubKitBookEncryption)contentEncryptionForBaseURL:(NSURL *)baseURL
 {

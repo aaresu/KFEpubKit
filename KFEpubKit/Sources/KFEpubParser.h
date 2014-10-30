@@ -31,7 +31,7 @@
 @interface KFEpubParser : NSObject
 
 
-- (KFEpubKitBookType)bookTypeForBaseURL:(NSURL *)baseURL;
+- (KFEpubKitBookType)bookTypeFromDocument:(DDXMLDocument *)document;
 
 - (KFEpubKitBookEncryption)contentEncryptionForBaseURL:(NSURL *)baseURL;
 

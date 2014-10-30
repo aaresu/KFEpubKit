@@ -86,7 +86,7 @@
     {
         _contentModel = [KFEpubContentModel new];
         
-        self.contentModel.bookType = [self.parser bookTypeForBaseURL:self.destinationURL];
+        self.contentModel.bookType = [self.parser bookTypeFromDocument:document ];
         self.contentModel.bookEncryption = [self.parser contentEncryptionForBaseURL:self.destinationURL];
         self.contentModel.metaData = [self.parser metaDataFromDocument:document];
         self.contentModel.coverPath = [self.parser coverPathComponentFromDocument:document];
