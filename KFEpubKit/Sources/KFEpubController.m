@@ -102,17 +102,32 @@
             self.contentModel.guide = [self.parser guideFromDocument:document];
             self.contentModel.spine = [self.parser spineFromDocument:document];
 
-            NSString *tocRef = [self.parser tocSpineItemFromDocument:document];
-            NSString *navigationFilePath = self.contentModel.manifest[tocRef][@"href"];
-            if (navigationFilePath) {
-                NSError *error = nil;
-                NSURL *url = [self.epubContentBaseURL URLByAppendingPathComponent:navigationFilePath];
-                NSString *content = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
-                DDXMLDocument *document = [[DDXMLDocument alloc] initWithXMLString:content options:kNilOptions error:&error];
-
-                self.contentModel.chapters = [self.parser chaptersFromDocument:document];
+            switch (self.contentModel.bookType) {
+                case KFEpubKitBookTypeEpub2: {
+                    NSString *navigationFilePath = self.contentModel.manifest[@"ncx"][@"href"];
+                    if (navigationFilePath) {
+                        NSURL *url = [self.epubContentBaseURL URLByAppendingPathComponent:navigationFilePath];
+                        NSString *content = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+                        DDXMLDocument *document = [[DDXMLDocument alloc] initWithXMLString:content options:kNilOptions error:nil];
+                        self.contentModel.chapters = [self.parser ePub2ChaptersFromDocument:document];
+                    }
+                    break;
+                }
+                
+                case KFEpubKitBookTypeEpub3: {
+                    NSString *navigationFilePath = self.contentModel.manifest[@"toc"][@"href"];
+                    if (navigationFilePath) {
+                        NSURL *url = [self.epubContentBaseURL URLByAppendingPathComponent:navigationFilePath];
+                        NSString *content = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+                        DDXMLDocument *document = [[DDXMLDocument alloc] initWithXMLString:content options:kNilOptions error:nil];
+                        self.contentModel.chapters = [self.parser ePub3ChaptersFromDocument:document];
+                    }
+                    break;
+                }
+                    
+                default:
+                    break;
             }
-            
             
             if (self.delegate)
             {

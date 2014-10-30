@@ -41,14 +41,13 @@
 
 - (NSDictionary *)metaDataFromDocument:(DDXMLDocument *)document;
 
-- (NSString *)tocSpineItemFromDocument:(DDXMLDocument *)document;
-
 - (NSArray *)spineFromDocument:(DDXMLDocument *)document;
 
 - (NSDictionary *)manifestFromDocument:(DDXMLDocument *)document;
 
 - (NSArray *)guideFromDocument:(DDXMLDocument *)document;
 
-- (NSArray *)chaptersFromDocument:(DDXMLDocument *)document;
+- (NSArray*)ePub2ChaptersFromDocument:(DDXMLDocument *)document;
+- (NSArray*)ePub3ChaptersFromDocument:(DDXMLDocument *)document;
 
 @end

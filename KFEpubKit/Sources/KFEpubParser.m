@@ -229,28 +229,6 @@
     return spine;
 }
 
-- (NSString *)tocSpineItemFromDocument:(DDXMLDocument *)document
-{
-    NSString *tocSpineItem = nil;
-    DDXMLElement *root  = [document rootElement];
-    DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
-    defaultNamespace.name = @"default";
-    NSArray *spineNodes = [root nodesForXPath:@"//default:package/default:spine" error:nil];
-    
-    if (spineNodes.count == 1)
-    {
-        DDXMLElement *spineElement = spineNodes[0];
-        tocSpineItem = [[spineElement attributeForName:@"toc"] stringValue];
-    }
-    else
-    {
-        NSLog(@"toc item invalid");
-        return nil;
-    }
-    
-    return tocSpineItem;
-}
-
 - (NSDictionary *)manifestFromDocument:(DDXMLDocument *)document
 {
     NSMutableDictionary *manifest = [NSMutableDictionary new];
@@ -343,7 +321,7 @@
     return guide;
 }
 
-- (NSArray *)chaptersFromDocument:(DDXMLDocument *)document;
+- (NSArray*)ePub2ChaptersFromDocument:(DDXMLDocument *)document
 {
     NSArray *chapters = [NSMutableArray new];
     DDXMLElement *root  = [document rootElement];
@@ -351,11 +329,11 @@
     NSError *error;
     DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
     defaultNamespace.name = @"default";
-    NSArray *chaptersNodes = [root nodesForXPath:@"//default:ncx/default:navMap" error:&error];
+    NSArray *chaptersNodes = [root nodesForXPath:@"//default:navMap" error:&error];
     
     if (chaptersNodes.count == 1)
     {
-        chapters = [self chaptersFromDocumentNavMapNode:[chaptersNodes firstObject] level:0];
+        chapters = [self ePub2ChaptersFromNode:[chaptersNodes firstObject] level:0];
     }
     else
     {
@@ -368,12 +346,12 @@
     return chapters;
 }
 
-- (NSArray*)chaptersFromDocumentNavMapNode:(DDXMLNode*)navNapMode level:(NSInteger)level
+- (NSArray*)ePub2ChaptersFromNode:(DDXMLNode*)navNapMode level:(NSInteger)level
 {
+    NSMutableArray *chapters = [NSMutableArray array];
     NSArray *nodes = [navNapMode nodesForXPath:@"default:navPoint" error:nil];
     if (nodes.count == 0) return nil;
     
-    NSMutableArray *chapters = [NSMutableArray array];
     for (DDXMLElement *node in nodes) {
         if (![self isValidNode:node]) continue;
         
@@ -382,7 +360,7 @@
         
         DDXMLElement *navLabel = [[node nodesForXPath:@"default:navLabel/default:text" error:nil] firstObject];
         NSString *label = [[[navLabel elementsForName:@"text"] firstObject] stringValue];
-
+        
         DDXMLElement *contents = [[node nodesForXPath:@"default:content" error:nil] firstObject];
         NSString *src = [[contents attributeForName:@"src"] stringValue];
         
@@ -393,7 +371,60 @@
                                   @"level" : @(level)};
         [chapters addObject:chapter];
         
-        NSArray *subChapters = [self chaptersFromDocumentNavMapNode:node level:level+1];
+        NSArray *subChapters = [self ePub2ChaptersFromNode:node level:level+1];
+        if (subChapters.count) [chapters addObjectsFromArray:subChapters];
+    }
+    return chapters;
+}
+
+- (NSArray*)ePub3ChaptersFromDocument:(DDXMLDocument *)document
+{
+    NSArray *chapters = [NSMutableArray new];
+    DDXMLElement *root  = [document rootElement];
+    
+    NSError *error;
+    DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
+    defaultNamespace.name = @"default";
+    
+    DDXMLElement *navNode = [[root nodesForXPath:@"//default:nav" error:&error] firstObject];
+    
+    if ([self isValidNode:navNode])
+    {
+        DDXMLElement *chapterContainerNode = [[navNode nodesForXPath:@"default:ol" error:&error] firstObject];
+        chapters = [self ePub3ChaptersFromNode:chapterContainerNode level:0];
+    }
+    else
+    {
+        NSLog(@"chapter data invalid");
+        return nil;
+    }
+    
+    chapters = [chapters sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"playOrder" ascending:YES]]];
+    
+    return chapters;
+}
+
+- (NSArray*)ePub3ChaptersFromNode:(DDXMLNode*)navNapMode level:(NSInteger)level
+{
+    NSMutableArray *chapters = [NSMutableArray array];
+    NSArray *nodes = [navNapMode nodesForXPath:@"default:li" error:nil];
+    if (nodes.count == 0) return nil;
+    
+    for (DDXMLElement *node in nodes) {
+        if (![self isValidNode:node]) continue;
+        
+        DDXMLElement *contents = [[node nodesForXPath:@"default:a" error:nil] firstObject];
+        
+        NSString *label = [contents stringValue];
+        NSString *src = [[contents attributeForName:@"href"] stringValue];
+        
+        NSDictionary *chapter = @{@"label" : label,
+                                  @"scr" : src,
+                                  @"level" : @(level)};
+        [chapters addObject:chapter];
+        
+        DDXMLElement *subChaptersContainerNode = [[node nodesForXPath:@"default:ol" error:nil] firstObject];
+        NSArray *subChapters = [self ePub3ChaptersFromNode:subChaptersContainerNode level:level+1];
         if (subChapters.count) [chapters addObjectsFromArray:subChapters];
     }
     
