@@ -47,12 +47,12 @@
 }
 
 
-- (DDXMLDocument *)documentNamed:(NSString *)name
+- (XR_DDXMLDocument *)documentNamed:(NSString *)name
 {
     NSURL *opfURL = [[NSBundle bundleForClass:self.class] URLForResource:[name stringByDeletingPathExtension] withExtension:[name pathExtension]];
     NSError *error = nil;
     NSString *content = [NSString stringWithContentsOfURL:opfURL encoding:NSUTF8StringEncoding error:&error];
-    DDXMLDocument *document = [[DDXMLDocument alloc] initWithXMLString:content options:kNilOptions error:&error];
+    XR_DDXMLDocument *document = [[XR_DDXMLDocument alloc] initWithXMLString:content options:kNilOptions error:&error];
     GHTestLog(@"document named %@: %@", name, document != nil ? @"found" : @"NOT found");
     return document;
 }
@@ -81,7 +81,7 @@
 
 - (void)testMetaDataFromDocumentWithoutMetaDataNode
 {
-    DDXMLDocument *document = [[DDXMLDocument alloc] init];
+    XR_DDXMLDocument *document = [[XR_DDXMLDocument alloc] init];
     NSDictionary *metaData = [self.epubParser metaDataFromDocument:document];
     GHAssertNil(metaData, @"when no meta data is found it has to result in a nil object");
 }
@@ -103,7 +103,7 @@
 
 - (void)testSpineFromDocumentWithoutTOCAttribute
 {
-    DDXMLDocument *invalidTOCDocument = [self documentNamed:@"invalid-toc.opf"];
+    XR_DDXMLDocument *invalidTOCDocument = [self documentNamed:@"invalid-toc.opf"];
     NSArray *spine = [self.epubParser spineFromDocument:invalidTOCDocument];
     GHAssertNotNil(spine, @"spine must be nil for a document without toc attribute in spine node");
 }

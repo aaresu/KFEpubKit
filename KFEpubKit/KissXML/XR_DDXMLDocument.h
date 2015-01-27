@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
-#import "DDXMLElement.h"
-#import "DDXMLNode.h"
+#import "XR_DDXMLElement.h"
+#import "XR_DDXMLNode.h"
 
 /**
  * Welcome to KissXML.
@@ -21,21 +21,21 @@
 **/
 
 enum {
-	DDXMLDocumentXMLKind = 0,
-	DDXMLDocumentXHTMLKind,
-	DDXMLDocumentHTMLKind,
-	DDXMLDocumentTextKind
+	XR_DDXMLDocumentXMLKind = 0,
+	XR_DDXMLDocumentXHTMLKind,
+	XR_DDXMLDocumentHTMLKind,
+	XR_DDXMLDocumentTextKind
 };
-typedef NSUInteger DDXMLDocumentContentKind;
+typedef NSUInteger XR_DDXMLDocumentContentKind;
 
-@interface DDXMLDocument : DDXMLNode
+@interface XR_DDXMLDocument : XR_DDXMLNode
 {
 }
 
 - (id)initWithXMLString:(NSString *)string options:(NSUInteger)mask error:(NSError **)error;
 //- (id)initWithContentsOfURL:(NSURL *)url options:(NSUInteger)mask error:(NSError **)error;
 - (id)initWithData:(NSData *)data options:(NSUInteger)mask error:(NSError **)error;
-//- (id)initWithRootElement:(DDXMLElement *)element;
+//- (id)initWithRootElement:(XR_DDXMLElement *)element;
 
 //+ (Class)replacementClassForClass:(Class)cls;
 
@@ -48,19 +48,19 @@ typedef NSUInteger DDXMLDocumentContentKind;
 //- (void)setStandalone:(BOOL)standalone;
 //- (BOOL)isStandalone;
 
-//- (void)setDocumentContentKind:(DDXMLDocumentContentKind)kind;
-//- (DDXMLDocumentContentKind)documentContentKind;
+//- (void)setDocumentContentKind:(XR_DDXMLDocumentContentKind)kind;
+//- (XR_DDXMLDocumentContentKind)documentContentKind;
 
 //- (void)setMIMEType:(NSString *)MIMEType;
 //- (NSString *)MIMEType;
 
-//- (void)setDTD:(DDXMLDTD *)documentTypeDeclaration;
-//- (DDXMLDTD *)DTD;
+//- (void)setDTD:(XR_DDXMLDTD *)documentTypeDeclaration;
+//- (XR_DDXMLDTD *)DTD;
 
-//- (void)setRootElement:(DDXMLNode *)root;
-- (DDXMLElement *)rootElement;
+//- (void)setRootElement:(XR_DDXMLNode *)root;
+- (XR_DDXMLElement *)rootElement;
 
-//- (void)insertChild:(DDXMLNode *)child atIndex:(NSUInteger)index;
+//- (void)insertChild:(XR_DDXMLNode *)child atIndex:(NSUInteger)index;
 
 //- (void)insertChildren:(NSArray *)children atIndex:(NSUInteger)index;
 
@@ -68,9 +68,9 @@ typedef NSUInteger DDXMLDocumentContentKind;
 
 //- (void)setChildren:(NSArray *)children;
 
-//- (void)addChild:(DDXMLNode *)child;
+//- (void)addChild:(XR_DDXMLNode *)child;
 
-//- (void)replaceChildAtIndex:(NSUInteger)index withNode:(DDXMLNode *)node;
+//- (void)replaceChildAtIndex:(NSUInteger)index withNode:(XR_DDXMLNode *)node;
 
 - (NSData *)XMLData;
 - (NSData *)XMLDataWithOptions:(NSUInteger)options;

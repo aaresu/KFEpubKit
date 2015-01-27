@@ -23,7 +23,7 @@
 
 #import <Foundation/Foundation.h>
 #import "KFEpubConstants.h"
-#import "DDXMLDocument.h"
+#import "XR_DDXMLDocument.h"
 
 @class KFEpubParser;
 
@@ -31,23 +31,23 @@
 @interface KFEpubParser : NSObject
 
 
-- (KFEpubKitBookType)bookTypeFromDocument:(DDXMLDocument *)document;
+- (KFEpubKitBookType)bookTypeFromDocument:(XR_DDXMLDocument *)document;
 
 - (KFEpubKitBookEncryption)contentEncryptionForBaseURL:(NSURL *)baseURL;
 
 - (NSURL *)rootFileForBaseURL:(NSURL *)baseURL;
 
-- (NSString *)coverPathComponentFromDocument:(DDXMLDocument *)document;
+- (NSString *)coverPathComponentFromDocument:(XR_DDXMLDocument *)document;
 
-- (NSDictionary *)metaDataFromDocument:(DDXMLDocument *)document;
+- (NSDictionary *)metaDataFromDocument:(XR_DDXMLDocument *)document;
 
-- (NSArray *)spineFromDocument:(DDXMLDocument *)document;
+- (NSArray *)spineFromDocument:(XR_DDXMLDocument *)document;
 
-- (NSDictionary *)manifestFromDocument:(DDXMLDocument *)document;
+- (NSDictionary *)manifestFromDocument:(XR_DDXMLDocument *)document;
 
-- (NSArray *)guideFromDocument:(DDXMLDocument *)document;
+- (NSArray *)guideFromDocument:(XR_DDXMLDocument *)document;
 
-- (NSArray*)ePub2ChaptersFromDocument:(DDXMLDocument *)document;
-- (NSArray*)ePub3ChaptersFromDocument:(DDXMLDocument *)document;
+- (NSArray*)ePub2ChaptersFromDocument:(XR_DDXMLDocument *)document;
+- (NSArray*)ePub3ChaptersFromDocument:(XR_DDXMLDocument *)document;
 
 @end

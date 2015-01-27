@@ -1,9 +1,9 @@
-#import "DDXML.h"
+#import "XR_DDXML.h"
 
 
 // We can't rely solely on NSAssert, because many developers disable them for release builds.
 // Our API contract requires us to keep these assertions intact.
-#define DDXMLAssert(condition, desc, ...)                                                                 \
+#define XR_DDXMLAssert(condition, desc, ...)                                                                 \
   do{                                                                                                     \
     if(!(condition)) {                                                                                    \
       [[NSAssertionHandler currentHandler] handleFailureInMethod:_cmd                                     \
@@ -16,10 +16,10 @@
 
 
 // Create assertion to ensure xml node is not a zombie.
-#if DDXML_DEBUG_MEMORY_ISSUES
-#define DDXMLNotZombieAssert()                                                                            \
+#if XR_DDXML_DEBUG_MEMORY_ISSUES
+#define XR_DDXMLNotZombieAssert()                                                                            \
   do{                                                                                                     \
-    if(DDXMLIsZombie(genericPtr, self)) {                                                                      \
+    if(XR_DDXMLIsZombie(genericPtr, self)) {                                                                      \
       NSString *desc = @"XML node is a zombie - It's parent structure has been freed!";                   \
       [[NSAssertionHandler currentHandler] handleFailureInMethod:_cmd                                     \
                                                           object:self                                     \
@@ -30,12 +30,12 @@
   }while(NO)
 #endif
 
-#define DDLastErrorKey @"DDXML:LastError"
+#define DDLastErrorKey @"XR_DDXML:LastError"
 
 
 
 /**
- * DDXMLNode can represent several underlying types, such as xmlNodePtr, xmlDocPtr, xmlAttrPtr, xmlNsPtr, etc.
+ * XR_DDXMLNode can represent several underlying types, such as xmlNodePtr, xmlDocPtr, xmlAttrPtr, xmlNsPtr, etc.
  * All of these are pointers to structures, and all of those structures start with a pointer, and a type.
  * The xmlKind struct is used as a generic structure, and a stepping stone.
  * We use it to check the type of a structure, and then perform the appropriate cast.
@@ -109,20 +109,20 @@ NS_INLINE BOOL IsXmlNsPtr(void *kindPtr)
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface DDXMLNamespaceNode : DDXMLNode
+@interface XR_DDXMLNamespaceNode : XR_DDXMLNode
 {
 	// The xmlNsPtr type doesn't store a reference to it's parent.
 	// This is here to fix the problem, and make this class more compatible with the NSXML classes.
 	xmlNodePtr nsParentPtr;
 }
 
-+ (id)nodeWithNsPrimitive:(xmlNsPtr)ns nsParent:(xmlNodePtr)parent owner:(DDXMLNode *)owner;
-- (id)initWithNsPrimitive:(xmlNsPtr)ns nsParent:(xmlNodePtr)parent owner:(DDXMLNode *)owner;
++ (id)nodeWithNsPrimitive:(xmlNsPtr)ns nsParent:(xmlNodePtr)parent owner:(XR_DDXMLNode *)owner;
+- (id)initWithNsPrimitive:(xmlNsPtr)ns nsParent:(xmlNodePtr)parent owner:(XR_DDXMLNode *)owner;
 
 - (xmlNodePtr)_nsParentPtr;
 - (void)_setNsParentPtr:(xmlNodePtr)parentPtr;
 
-// Overrides several methods in DDXMLNode
+// Overrides several methods in XR_DDXMLNode
 
 @end
 
@@ -130,7 +130,7 @@ NS_INLINE BOOL IsXmlNsPtr(void *kindPtr)
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface DDXMLAttributeNode : DDXMLNode
+@interface XR_DDXMLAttributeNode : XR_DDXMLNode
 {
 	// The xmlAttrPtr type doesn't allow for ownership of a namespace.
 	// 
@@ -146,10 +146,10 @@ NS_INLINE BOOL IsXmlNsPtr(void *kindPtr)
 	xmlNsPtr attrNsPtr;
 }
 
-+ (id)nodeWithAttrPrimitive:(xmlAttrPtr)attr owner:(DDXMLNode *)owner;
-- (id)initWithAttrPrimitive:(xmlAttrPtr)attr owner:(DDXMLNode *)owner;
++ (id)nodeWithAttrPrimitive:(xmlAttrPtr)attr owner:(XR_DDXMLNode *)owner;
+- (id)initWithAttrPrimitive:(xmlAttrPtr)attr owner:(XR_DDXMLNode *)owner;
 
-// Overrides several methods in DDXMLNode
+// Overrides several methods in XR_DDXMLNode
 
 @end
 
@@ -157,11 +157,11 @@ NS_INLINE BOOL IsXmlNsPtr(void *kindPtr)
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface DDXMLInvalidNode : DDXMLNode
+@interface XR_DDXMLInvalidNode : XR_DDXMLNode
 {
 }
 
-// Overrides several methods in DDXMLNode
+// Overrides several methods in XR_DDXMLNode
 
 @end
 
@@ -169,12 +169,12 @@ NS_INLINE BOOL IsXmlNsPtr(void *kindPtr)
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface DDXMLNode (PrivateAPI)
+@interface XR_DDXMLNode (PrivateAPI)
 
-+ (id)nodeWithUnknownPrimitive:(xmlKindPtr)kindPtr owner:(DDXMLNode *)owner;
++ (id)nodeWithUnknownPrimitive:(xmlKindPtr)kindPtr owner:(XR_DDXMLNode *)owner;
 
-+ (id)nodeWithPrimitive:(xmlKindPtr)kindPtr owner:(DDXMLNode *)owner;
-- (id)initWithPrimitive:(xmlKindPtr)kindPtr owner:(DDXMLNode *)owner;
++ (id)nodeWithPrimitive:(xmlKindPtr)kindPtr owner:(XR_DDXMLNode *)owner;
+- (id)initWithPrimitive:(xmlKindPtr)kindPtr owner:(XR_DDXMLNode *)owner;
 
 - (BOOL)_hasParent;
 
@@ -197,7 +197,7 @@ NS_INLINE BOOL IsXmlNsPtr(void *kindPtr)
 + (void)removeChild:(xmlNodePtr)child;
 + (void)removeAllChildrenFromNode:(xmlNodePtr)node;
 
-BOOL DDXMLIsZombie(void *xmlPtr, DDXMLNode *wrapper);
+BOOL XR_DDXMLIsZombie(void *xmlPtr, XR_DDXMLNode *wrapper);
 
 + (NSError *)lastError;
 + (void)installErrorHandlersInThread;
@@ -208,12 +208,12 @@ BOOL DDXMLIsZombie(void *xmlPtr, DDXMLNode *wrapper);
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface DDXMLElement (PrivateAPI)
+@interface XR_DDXMLElement (PrivateAPI)
 
-+ (id)nodeWithElementPrimitive:(xmlNodePtr)node owner:(DDXMLNode *)owner;
-- (id)initWithElementPrimitive:(xmlNodePtr)node owner:(DDXMLNode *)owner;
++ (id)nodeWithElementPrimitive:(xmlNodePtr)node owner:(XR_DDXMLNode *)owner;
+- (id)initWithElementPrimitive:(xmlNodePtr)node owner:(XR_DDXMLNode *)owner;
 
-- (DDXMLNode *)_recursiveResolveNamespaceForPrefix:(NSString *)prefix atNode:(xmlNodePtr)nodePtr;
+- (XR_DDXMLNode *)_recursiveResolveNamespaceForPrefix:(NSString *)prefix atNode:(xmlNodePtr)nodePtr;
 - (NSString *)_recursiveResolvePrefixForURI:(NSString *)uri atNode:(xmlNodePtr)nodePtr;
 
 @end
@@ -222,9 +222,9 @@ BOOL DDXMLIsZombie(void *xmlPtr, DDXMLNode *wrapper);
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface DDXMLDocument (PrivateAPI)
+@interface XR_DDXMLDocument (PrivateAPI)
 
-+ (id)nodeWithDocPrimitive:(xmlDocPtr)doc owner:(DDXMLNode *)owner;
-- (id)initWithDocPrimitive:(xmlDocPtr)doc owner:(DDXMLNode *)owner;
++ (id)nodeWithDocPrimitive:(xmlDocPtr)doc owner:(XR_DDXMLNode *)owner;
+- (id)initWithDocPrimitive:(xmlDocPtr)doc owner:(XR_DDXMLNode *)owner;
 
 @end

@@ -1,13 +1,13 @@
-#import "DDXMLElementAdditions.h"
+#import "XR_DDXMLElementAdditions.h"
 
-@implementation DDXMLElement (DDAdditions)
+@implementation XR_DDXMLElement (DDAdditions)
 
 /**
  * Quick method to create an element
 **/
-+ (DDXMLElement *)elementWithName:(NSString *)name xmlns:(NSString *)ns
++ (XR_DDXMLElement *)elementWithName:(NSString *)name xmlns:(NSString *)ns
 {
-	DDXMLElement *element = [DDXMLElement elementWithName:name];
+	XR_DDXMLElement *element = [XR_DDXMLElement elementWithName:name];
 	[element setXmlns:ns];
 	return element;
 }
@@ -16,7 +16,7 @@
  * This method returns the first child element for the given name.
  * If no child element exists for the given name, returns nil.
 **/
-- (DDXMLElement *)elementForName:(NSString *)name
+- (XR_DDXMLElement *)elementForName:(NSString *)name
 {
 	NSArray *elements = [self elementsForName:name];
 	if([elements count] > 0)
@@ -44,7 +44,7 @@
 		// 
 		// This bug was submitted to apple on June 1st, 2007 and was classified as "serious".
 		// 
-		// --!!-- This bug does NOT exist in DDXML --!!--
+		// --!!-- This bug does NOT exist in XR_DDXML --!!--
 		
 		return nil;
 	}
@@ -54,7 +54,7 @@
  * This method returns the first child element for the given name and given xmlns.
  * If no child elements exist for the given name and given xmlns, returns nil.
 **/
-- (DDXMLElement *)elementForName:(NSString *)name xmlns:(NSString *)xmlns
+- (XR_DDXMLElement *)elementForName:(NSString *)name xmlns:(NSString *)xmlns
 {
 	NSArray *elements = [self elementsForLocalName:name URI:xmlns];
 	if([elements count] > 0)
@@ -81,9 +81,9 @@
 	// If you use setURI: then the xmlns won't be displayed in the XMLString.
 	// Adding the namespace this way works properly.
 	// 
-	// This applies to both Apple's NSXML and DDXML.
+	// This applies to both Apple's NSXML and XR_DDXML.
 	
-	[self addNamespace:[DDXMLNode namespaceWithName:@"" stringValue:ns]];
+	[self addNamespace:[XR_DDXMLNode namespaceWithName:@"" stringValue:ns]];
 }
 
 /**
@@ -91,7 +91,7 @@
 **/
 - (NSString *)prettyXMLString
 {
-	return [self XMLStringWithOptions:(DDXMLNodePrettyPrint | DDXMLNodeCompactEmptyElement)];
+	return [self XMLStringWithOptions:(XR_DDXMLNodePrettyPrint | XR_DDXMLNodeCompactEmptyElement)];
 }
 
 /**
@@ -99,15 +99,15 @@
 **/
 - (NSString *)compactXMLString
 {
-    return [self XMLStringWithOptions:DDXMLNodeCompactEmptyElement];
+    return [self XMLStringWithOptions:XR_DDXMLNodeCompactEmptyElement];
 }
 
 /**
- *	Shortcut to avoid having to manually create a DDXMLNode everytime.
+ *	Shortcut to avoid having to manually create a XR_DDXMLNode everytime.
 **/
 - (void)addAttributeWithName:(NSString *)name stringValue:(NSString *)string
 {
-	[self addAttribute:[DDXMLNode attributeWithName:name stringValue:string]];
+	[self addAttribute:[XR_DDXMLNode attributeWithName:name stringValue:string]];
 }
 
 /**
@@ -121,7 +121,7 @@
 	uint i;
 	for(i = 0; i < [attributes count]; i++)
 	{
-		DDXMLNode *node = [attributes objectAtIndex:i];
+		XR_DDXMLNode *node = [attributes objectAtIndex:i];
 		
 		[result setObject:[node stringValue] forKey:[node name]];
 	}

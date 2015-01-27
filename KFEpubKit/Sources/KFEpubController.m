@@ -81,7 +81,7 @@
     
     NSError *error = nil;
     NSString *content = [NSString stringWithContentsOfURL:rootFile encoding:NSUTF8StringEncoding error:&error];
-    DDXMLDocument *document = [[DDXMLDocument alloc] initWithXMLString:content options:kNilOptions error:&error];
+    XR_DDXMLDocument *document = [[XR_DDXMLDocument alloc] initWithXMLString:content options:kNilOptions error:&error];
     if (document)
     {
         _contentModel = [KFEpubContentModel new];
@@ -108,7 +108,7 @@
                     if (navigationFilePath) {
                         NSURL *url = [self.epubContentBaseURL URLByAppendingPathComponent:navigationFilePath];
                         NSString *content = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
-                        DDXMLDocument *document = [[DDXMLDocument alloc] initWithXMLString:content options:kNilOptions error:nil];
+                        XR_DDXMLDocument *document = [[XR_DDXMLDocument alloc] initWithXMLString:content options:kNilOptions error:nil];
                         self.contentModel.chapters = [self.parser ePub2ChaptersFromDocument:document];
                     }
                     break;
@@ -119,7 +119,7 @@
                     if (navigationFilePath) {
                         NSURL *url = [self.epubContentBaseURL URLByAppendingPathComponent:navigationFilePath];
                         NSString *content = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
-                        DDXMLDocument *document = [[DDXMLDocument alloc] initWithXMLString:content options:kNilOptions error:nil];
+                        XR_DDXMLDocument *document = [[XR_DDXMLDocument alloc] initWithXMLString:content options:kNilOptions error:nil];
                         self.contentModel.chapters = [self.parser ePub3ChaptersFromDocument:document];
                     }
                     break;

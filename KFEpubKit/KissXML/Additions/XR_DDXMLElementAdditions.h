@@ -1,15 +1,15 @@
 #import <Foundation/Foundation.h>
-#import "DDXML.h"
+#import "XR_DDXML.h"
 
 // These methods are not part of the standard NSXML API.
 // But any developer working extensively with XML will likely appreciate them.
 
-@interface DDXMLElement (DDAdditions)
+@interface XR_DDXMLElement (DDAdditions)
 
-+ (DDXMLElement *)elementWithName:(NSString *)name xmlns:(NSString *)ns;
++ (XR_DDXMLElement *)elementWithName:(NSString *)name xmlns:(NSString *)ns;
 
-- (DDXMLElement *)elementForName:(NSString *)name;
-- (DDXMLElement *)elementForName:(NSString *)name xmlns:(NSString *)xmlns;
+- (XR_DDXMLElement *)elementForName:(NSString *)name;
+- (XR_DDXMLElement *)elementForName:(NSString *)name xmlns:(NSString *)xmlns;
 
 - (NSString *)xmlns;
 - (void)setXmlns:(NSString *)ns;

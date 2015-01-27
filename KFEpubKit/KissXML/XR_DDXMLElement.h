@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "DDXMLNode.h"
+#import "XR_DDXMLNode.h"
 
 /**
  * Welcome to KissXML.
@@ -19,7 +19,7 @@
  * https://github.com/robbiehanson/KissXML/wiki/Reference
 **/
 
-@interface DDXMLElement : DDXMLNode
+@interface XR_DDXMLElement : XR_DDXMLNode
 {
 }
 
@@ -35,32 +35,32 @@
 
 #pragma mark --- Attributes ---
 
-- (void)addAttribute:(DDXMLNode *)attribute;
+- (void)addAttribute:(XR_DDXMLNode *)attribute;
 - (void)removeAttributeForName:(NSString *)name;
 - (void)setAttributes:(NSArray *)attributes;
 //- (void)setAttributesAsDictionary:(NSDictionary *)attributes;
 - (NSArray *)attributes;
-- (DDXMLNode *)attributeForName:(NSString *)name;
-//- (DDXMLNode *)attributeForLocalName:(NSString *)localName URI:(NSString *)URI;
+- (XR_DDXMLNode *)attributeForName:(NSString *)name;
+//- (XR_DDXMLNode *)attributeForLocalName:(NSString *)localName URI:(NSString *)URI;
 
 #pragma mark --- Namespaces ---
 
-- (void)addNamespace:(DDXMLNode *)aNamespace;
+- (void)addNamespace:(XR_DDXMLNode *)aNamespace;
 - (void)removeNamespaceForPrefix:(NSString *)name;
 - (void)setNamespaces:(NSArray *)namespaces;
 - (NSArray *)namespaces;
-- (DDXMLNode *)namespaceForPrefix:(NSString *)prefix;
-- (DDXMLNode *)resolveNamespaceForName:(NSString *)name;
+- (XR_DDXMLNode *)namespaceForPrefix:(NSString *)prefix;
+- (XR_DDXMLNode *)resolveNamespaceForName:(NSString *)name;
 - (NSString *)resolvePrefixForNamespaceURI:(NSString *)namespaceURI;
 
 #pragma mark --- Children ---
 
-- (void)insertChild:(DDXMLNode *)child atIndex:(NSUInteger)index;
+- (void)insertChild:(XR_DDXMLNode *)child atIndex:(NSUInteger)index;
 //- (void)insertChildren:(NSArray *)children atIndex:(NSUInteger)index;
 - (void)removeChildAtIndex:(NSUInteger)index;
 - (void)setChildren:(NSArray *)children;
-- (void)addChild:(DDXMLNode *)child;
-//- (void)replaceChildAtIndex:(NSUInteger)index withNode:(DDXMLNode *)node;
+- (void)addChild:(XR_DDXMLNode *)child;
+//- (void)replaceChildAtIndex:(NSUInteger)index withNode:(XR_DDXMLNode *)node;
 //- (void)normalizeAdjacentTextNodesPreservingCDATA:(BOOL)preserve;
 
 @end

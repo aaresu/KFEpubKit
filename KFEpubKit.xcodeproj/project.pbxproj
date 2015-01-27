@@ -63,21 +63,21 @@
 		5B1C560EB2C844A39C937FFB /* libPods-KFEpubKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B9236CF0F044D65B0827915 /* libPods-KFEpubKit.a */; };
 		7294A64600C64AFBA5B8A56E /* libPods-KFEpubKit iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DDC03826CD99431A927FC302 /* libPods-KFEpubKit iOS.a */; };
 		D0507F3072C34E6A8D7BABC5 /* libPods-KFEpubKit Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4878F171D94147409B51FE24 /* libPods-KFEpubKit Tests.a */; };
-		F52BF7681977D76500BC4710 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF75B1977D76500BC4710 /* DDXMLElementAdditions.m */; };
-		F52BF7691977D76500BC4710 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF75B1977D76500BC4710 /* DDXMLElementAdditions.m */; };
-		F52BF76A1977D76500BC4710 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF75B1977D76500BC4710 /* DDXMLElementAdditions.m */; };
-		F52BF76B1977D76500BC4710 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF75E1977D76500BC4710 /* NSString+DDXML.m */; };
-		F52BF76C1977D76500BC4710 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF75E1977D76500BC4710 /* NSString+DDXML.m */; };
-		F52BF76D1977D76500BC4710 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF75E1977D76500BC4710 /* NSString+DDXML.m */; };
-		F52BF76E1977D76500BC4710 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF7611977D76500BC4710 /* DDXMLDocument.m */; };
-		F52BF76F1977D76500BC4710 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF7611977D76500BC4710 /* DDXMLDocument.m */; };
-		F52BF7701977D76500BC4710 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF7611977D76500BC4710 /* DDXMLDocument.m */; };
-		F52BF7711977D76500BC4710 /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF7631977D76500BC4710 /* DDXMLElement.m */; };
-		F52BF7721977D76500BC4710 /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF7631977D76500BC4710 /* DDXMLElement.m */; };
-		F52BF7731977D76500BC4710 /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF7631977D76500BC4710 /* DDXMLElement.m */; };
-		F52BF7741977D76500BC4710 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF7651977D76500BC4710 /* DDXMLNode.m */; };
-		F52BF7751977D76500BC4710 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF7651977D76500BC4710 /* DDXMLNode.m */; };
-		F52BF7761977D76500BC4710 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF7651977D76500BC4710 /* DDXMLNode.m */; };
+		F52BF7681977D76500BC4710 /* XR_DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF75B1977D76500BC4710 /* XR_DDXMLElementAdditions.m */; };
+		F52BF7691977D76500BC4710 /* XR_DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF75B1977D76500BC4710 /* XR_DDXMLElementAdditions.m */; };
+		F52BF76A1977D76500BC4710 /* XR_DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF75B1977D76500BC4710 /* XR_DDXMLElementAdditions.m */; };
+		F52BF76B1977D76500BC4710 /* NSString+XR_DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF75E1977D76500BC4710 /* NSString+XR_DDXML.m */; };
+		F52BF76C1977D76500BC4710 /* NSString+XR_DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF75E1977D76500BC4710 /* NSString+XR_DDXML.m */; };
+		F52BF76D1977D76500BC4710 /* NSString+XR_DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF75E1977D76500BC4710 /* NSString+XR_DDXML.m */; };
+		F52BF76E1977D76500BC4710 /* XR_DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF7611977D76500BC4710 /* XR_DDXMLDocument.m */; };
+		F52BF76F1977D76500BC4710 /* XR_DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF7611977D76500BC4710 /* XR_DDXMLDocument.m */; };
+		F52BF7701977D76500BC4710 /* XR_DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF7611977D76500BC4710 /* XR_DDXMLDocument.m */; };
+		F52BF7711977D76500BC4710 /* XR_DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF7631977D76500BC4710 /* XR_DDXMLElement.m */; };
+		F52BF7721977D76500BC4710 /* XR_DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF7631977D76500BC4710 /* XR_DDXMLElement.m */; };
+		F52BF7731977D76500BC4710 /* XR_DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF7631977D76500BC4710 /* XR_DDXMLElement.m */; };
+		F52BF7741977D76500BC4710 /* XR_DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF7651977D76500BC4710 /* XR_DDXMLNode.m */; };
+		F52BF7751977D76500BC4710 /* XR_DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF7651977D76500BC4710 /* XR_DDXMLNode.m */; };
+		F52BF7761977D76500BC4710 /* XR_DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BF7651977D76500BC4710 /* XR_DDXMLNode.m */; };
 		F52BF7781977DB8F00BC4710 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F52BF7771977DB8F00BC4710 /* libxml2.dylib */; };
 		F52BF7791977DB9500BC4710 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F52BF7771977DB8F00BC4710 /* libxml2.dylib */; };
 		F52BF77B1977DB9B00BC4710 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F52BF77A1977DB9B00BC4710 /* libxml2.dylib */; };
@@ -151,18 +151,18 @@
 		7B9236CF0F044D65B0827915 /* libPods-KFEpubKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KFEpubKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BF7E8FE7DF44BF2859F7881 /* Pods-KFEpubKit iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KFEpubKit iOS.xcconfig"; path = "Pods/Pods-KFEpubKit iOS.xcconfig"; sourceTree = SOURCE_ROOT; };
 		DDC03826CD99431A927FC302 /* libPods-KFEpubKit iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KFEpubKit iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F52BF75A1977D76500BC4710 /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
-		F52BF75B1977D76500BC4710 /* DDXMLElementAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElementAdditions.m; sourceTree = "<group>"; };
-		F52BF75D1977D76500BC4710 /* NSString+DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DDXML.h"; sourceTree = "<group>"; };
-		F52BF75E1977D76500BC4710 /* NSString+DDXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DDXML.m"; sourceTree = "<group>"; };
-		F52BF75F1977D76500BC4710 /* DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXML.h; sourceTree = "<group>"; };
-		F52BF7601977D76500BC4710 /* DDXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLDocument.h; sourceTree = "<group>"; };
-		F52BF7611977D76500BC4710 /* DDXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLDocument.m; sourceTree = "<group>"; };
-		F52BF7621977D76500BC4710 /* DDXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElement.h; sourceTree = "<group>"; };
-		F52BF7631977D76500BC4710 /* DDXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElement.m; sourceTree = "<group>"; };
-		F52BF7641977D76500BC4710 /* DDXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLNode.h; sourceTree = "<group>"; };
-		F52BF7651977D76500BC4710 /* DDXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLNode.m; sourceTree = "<group>"; };
-		F52BF7671977D76500BC4710 /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
+		F52BF75A1977D76500BC4710 /* XR_DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XR_DDXMLElementAdditions.h; sourceTree = "<group>"; };
+		F52BF75B1977D76500BC4710 /* XR_DDXMLElementAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XR_DDXMLElementAdditions.m; sourceTree = "<group>"; };
+		F52BF75D1977D76500BC4710 /* NSString+XR_DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+XR_DDXML.h"; sourceTree = "<group>"; };
+		F52BF75E1977D76500BC4710 /* NSString+XR_DDXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+XR_DDXML.m"; sourceTree = "<group>"; };
+		F52BF75F1977D76500BC4710 /* XR_DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XR_DDXML.h; sourceTree = "<group>"; };
+		F52BF7601977D76500BC4710 /* XR_DDXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XR_DDXMLDocument.h; sourceTree = "<group>"; };
+		F52BF7611977D76500BC4710 /* XR_DDXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XR_DDXMLDocument.m; sourceTree = "<group>"; };
+		F52BF7621977D76500BC4710 /* XR_DDXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XR_DDXMLElement.h; sourceTree = "<group>"; };
+		F52BF7631977D76500BC4710 /* XR_DDXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XR_DDXMLElement.m; sourceTree = "<group>"; };
+		F52BF7641977D76500BC4710 /* XR_DDXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XR_DDXMLNode.h; sourceTree = "<group>"; };
+		F52BF7651977D76500BC4710 /* XR_DDXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XR_DDXMLNode.m; sourceTree = "<group>"; };
+		F52BF7671977D76500BC4710 /* XR_DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XR_DDXMLPrivate.h; sourceTree = "<group>"; };
 		F52BF7771977DB8F00BC4710 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		F52BF77A1977DB9B00BC4710 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/usr/lib/libxml2.dylib; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -412,13 +412,13 @@
 			children = (
 				F52BF7591977D76500BC4710 /* Additions */,
 				F52BF75C1977D76500BC4710 /* Categories */,
-				F52BF75F1977D76500BC4710 /* DDXML.h */,
-				F52BF7601977D76500BC4710 /* DDXMLDocument.h */,
-				F52BF7611977D76500BC4710 /* DDXMLDocument.m */,
-				F52BF7621977D76500BC4710 /* DDXMLElement.h */,
-				F52BF7631977D76500BC4710 /* DDXMLElement.m */,
-				F52BF7641977D76500BC4710 /* DDXMLNode.h */,
-				F52BF7651977D76500BC4710 /* DDXMLNode.m */,
+				F52BF75F1977D76500BC4710 /* XR_DDXML.h */,
+				F52BF7601977D76500BC4710 /* XR_DDXMLDocument.h */,
+				F52BF7611977D76500BC4710 /* XR_DDXMLDocument.m */,
+				F52BF7621977D76500BC4710 /* XR_DDXMLElement.h */,
+				F52BF7631977D76500BC4710 /* XR_DDXMLElement.m */,
+				F52BF7641977D76500BC4710 /* XR_DDXMLNode.h */,
+				F52BF7651977D76500BC4710 /* XR_DDXMLNode.m */,
 				F52BF7661977D76500BC4710 /* Private */,
 			);
 			path = KissXML;
@@ -427,8 +427,8 @@
 		F52BF7591977D76500BC4710 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
-				F52BF75A1977D76500BC4710 /* DDXMLElementAdditions.h */,
-				F52BF75B1977D76500BC4710 /* DDXMLElementAdditions.m */,
+				F52BF75A1977D76500BC4710 /* XR_DDXMLElementAdditions.h */,
+				F52BF75B1977D76500BC4710 /* XR_DDXMLElementAdditions.m */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -436,8 +436,8 @@
 		F52BF75C1977D76500BC4710 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				F52BF75D1977D76500BC4710 /* NSString+DDXML.h */,
-				F52BF75E1977D76500BC4710 /* NSString+DDXML.m */,
+				F52BF75D1977D76500BC4710 /* NSString+XR_DDXML.h */,
+				F52BF75E1977D76500BC4710 /* NSString+XR_DDXML.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -445,7 +445,7 @@
 		F52BF7661977D76500BC4710 /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				F52BF7671977D76500BC4710 /* DDXMLPrivate.h */,
+				F52BF7671977D76500BC4710 /* XR_DDXMLPrivate.h */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -723,15 +723,15 @@
 				1D4FFAFD17291A1500AA5D35 /* KFEpubParserTest.m in Sources */,
 				1D4FFB091729383E00AA5D35 /* KFEpubExtractorTest.m in Sources */,
 				1D4FFB14172979E600AA5D35 /* KFEpubControllerTest.m in Sources */,
-				F52BF76F1977D76500BC4710 /* DDXMLDocument.m in Sources */,
-				F52BF7751977D76500BC4710 /* DDXMLNode.m in Sources */,
+				F52BF76F1977D76500BC4710 /* XR_DDXMLDocument.m in Sources */,
+				F52BF7751977D76500BC4710 /* XR_DDXMLNode.m in Sources */,
 				1D4FFB1717297ABB00AA5D35 /* KFEpubTestUtils.m in Sources */,
-				F52BF76C1977D76500BC4710 /* NSString+DDXML.m in Sources */,
+				F52BF76C1977D76500BC4710 /* NSString+XR_DDXML.m in Sources */,
 				1D71751C1769030100CA1E90 /* KFEpubConstants.m in Sources */,
-				F52BF7721977D76500BC4710 /* DDXMLElement.m in Sources */,
+				F52BF7721977D76500BC4710 /* XR_DDXMLElement.m in Sources */,
 				1D71751D1769030100CA1E90 /* KFEpubContentModel.m in Sources */,
 				1D71751E1769030100CA1E90 /* KFEpubController.m in Sources */,
-				F52BF7691977D76500BC4710 /* DDXMLElementAdditions.m in Sources */,
+				F52BF7691977D76500BC4710 /* XR_DDXMLElementAdditions.m in Sources */,
 				1D71751F1769030100CA1E90 /* KFEpubExtractor.m in Sources */,
 				1D7175201769030100CA1E90 /* KFEpubKit.m in Sources */,
 				1D7175211769030100CA1E90 /* KFEpubParser.m in Sources */,
@@ -742,19 +742,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F52BF7731977D76500BC4710 /* DDXMLElement.m in Sources */,
+				F52BF7731977D76500BC4710 /* XR_DDXMLElement.m in Sources */,
 				1D717504176900FC00CA1E90 /* main.m in Sources */,
 				1D717508176900FC00CA1E90 /* KFAppDelegate.m in Sources */,
 				1D717511176900FC00CA1E90 /* KFViewController.m in Sources */,
 				1D7175221769030400CA1E90 /* KFEpubConstants.m in Sources */,
-				F52BF76A1977D76500BC4710 /* DDXMLElementAdditions.m in Sources */,
+				F52BF76A1977D76500BC4710 /* XR_DDXMLElementAdditions.m in Sources */,
 				1D7175231769030400CA1E90 /* KFEpubContentModel.m in Sources */,
-				F52BF7761977D76500BC4710 /* DDXMLNode.m in Sources */,
+				F52BF7761977D76500BC4710 /* XR_DDXMLNode.m in Sources */,
 				1D7175241769030400CA1E90 /* KFEpubController.m in Sources */,
 				1D7175251769030400CA1E90 /* KFEpubExtractor.m in Sources */,
-				F52BF76D1977D76500BC4710 /* NSString+DDXML.m in Sources */,
+				F52BF76D1977D76500BC4710 /* NSString+XR_DDXML.m in Sources */,
 				1D7175261769030400CA1E90 /* KFEpubKit.m in Sources */,
-				F52BF7701977D76500BC4710 /* DDXMLDocument.m in Sources */,
+				F52BF7701977D76500BC4710 /* XR_DDXMLDocument.m in Sources */,
 				1D7175271769030400CA1E90 /* KFEpubParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -764,18 +764,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DEB65701727E18800FDBDC3 /* main.m in Sources */,
-				F52BF76E1977D76500BC4710 /* DDXMLDocument.m in Sources */,
+				F52BF76E1977D76500BC4710 /* XR_DDXMLDocument.m in Sources */,
 				1DEB65771727E18800FDBDC3 /* AppDelegate.m in Sources */,
 				1DEB65871727FC6700FDBDC3 /* KFEpubParser.m in Sources */,
-				F52BF7741977D76500BC4710 /* DDXMLNode.m in Sources */,
+				F52BF7741977D76500BC4710 /* XR_DDXMLNode.m in Sources */,
 				1DEB658B1727FFEE00FDBDC3 /* KFEpubContentModel.m in Sources */,
 				1D4FFADA17280EC500AA5D35 /* KFEpubExtractor.m in Sources */,
 				1D4FFADD1728203C00AA5D35 /* KFEpubController.m in Sources */,
 				1D4FFB1A172983BC00AA5D35 /* KFEpubKit.m in Sources */,
-				F52BF7711977D76500BC4710 /* DDXMLElement.m in Sources */,
+				F52BF7711977D76500BC4710 /* XR_DDXMLElement.m in Sources */,
 				1D4FFB1D1729846A00AA5D35 /* KFEpubConstants.m in Sources */,
-				F52BF7681977D76500BC4710 /* DDXMLElementAdditions.m in Sources */,
-				F52BF76B1977D76500BC4710 /* NSString+DDXML.m in Sources */,
+				F52BF7681977D76500BC4710 /* XR_DDXMLElementAdditions.m in Sources */,
+				F52BF76B1977D76500BC4710 /* NSString+XR_DDXML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

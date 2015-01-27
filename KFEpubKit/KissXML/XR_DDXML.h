@@ -16,84 +16,84 @@
  * https://github.com/robbiehanson/KissXML/wiki/Reference
 **/
 
-#import "DDXMLNode.h"
-#import "DDXMLElement.h"
-#import "DDXMLDocument.h"
+#import "XR_DDXMLNode.h"
+#import "XR_DDXMLElement.h"
+#import "XR_DDXMLDocument.h"
 
 
-#ifndef DDXML_NS_DECLARATIONS_ENABLED
-#define DDXML_NS_DECLARATIONS_ENABLED 0  // Disabled by default
+#ifndef XR_DDXML_NS_DECLARATIONS_ENABLED
+#define XR_DDXML_NS_DECLARATIONS_ENABLED 0  // Disabled by default
 #endif
 
-#if TARGET_OS_IPHONE && DDXML_NS_DECLARATIONS_ENABLED
+#if TARGET_OS_IPHONE && XR_DDXML_NS_DECLARATIONS_ENABLED
 
 // Since KissXML is a drop in replacement for NSXML,
 // it may be desireable (when writing cross-platform code to be used on both Mac OS X and iOS)
-// to use the NSXML prefixes instead of the DDXML prefix.
+// to use the NSXML prefixes instead of the XR_DDXML prefix.
 // 
 // This way, on Mac OS X it uses NSXML, and on iOS it uses KissXML.
 
 #ifndef NSXMLNode
-  #define NSXMLNode DDXMLNode
+  #define NSXMLNode XR_DDXMLNode
 #endif
 #ifndef NSXMLElement
-  #define NSXMLElement DDXMLElement
+  #define NSXMLElement XR_DDXMLElement
 #endif
 #ifndef NSXMLDocument
-  #define NSXMLDocument DDXMLDocument
+  #define NSXMLDocument XR_DDXMLDocument
 #endif
 
 #ifndef NSXMLInvalidKind
-  #define NSXMLInvalidKind DDXMLInvalidKind
+  #define NSXMLInvalidKind XR_DDXMLInvalidKind
 #endif
 #ifndef NSXMLDocumentKind
-  #define NSXMLDocumentKind DDXMLDocumentKind
+  #define NSXMLDocumentKind XR_DDXMLDocumentKind
 #endif
 #ifndef NSXMLElementKind
-  #define NSXMLElementKind DDXMLElementKind
+  #define NSXMLElementKind XR_DDXMLElementKind
 #endif
 #ifndef NSXMLAttributeKind
-  #define NSXMLAttributeKind DDXMLAttributeKind
+  #define NSXMLAttributeKind XR_DDXMLAttributeKind
 #endif
 #ifndef NSXMLNamespaceKind
-  #define NSXMLNamespaceKind DDXMLNamespaceKind
+  #define NSXMLNamespaceKind XR_DDXMLNamespaceKind
 #endif
 #ifndef NSXMLProcessingInstructionKind
-  #define NSXMLProcessingInstructionKind DDXMLProcessingInstructionKind
+  #define NSXMLProcessingInstructionKind XR_DDXMLProcessingInstructionKind
 #endif
 #ifndef NSXMLCommentKind
-  #define NSXMLCommentKind DDXMLCommentKind
+  #define NSXMLCommentKind XR_DDXMLCommentKind
 #endif
 #ifndef NSXMLTextKind
-  #define NSXMLTextKind DDXMLTextKind
+  #define NSXMLTextKind XR_DDXMLTextKind
 #endif
 #ifndef NSXMLDTDKind
-  #define NSXMLDTDKind DDXMLDTDKind
+  #define NSXMLDTDKind XR_DDXMLDTDKind
 #endif
 #ifndef NSXMLEntityDeclarationKind
-  #define NSXMLEntityDeclarationKind DDXMLEntityDeclarationKind
+  #define NSXMLEntityDeclarationKind XR_DDXMLEntityDeclarationKind
 #endif
 #ifndef NSXMLAttributeDeclarationKind
-  #define NSXMLAttributeDeclarationKind DDXMLAttributeDeclarationKind
+  #define NSXMLAttributeDeclarationKind XR_DDXMLAttributeDeclarationKind
 #endif
 #ifndef NSXMLElementDeclarationKind
-  #define NSXMLElementDeclarationKind DDXMLElementDeclarationKind
+  #define NSXMLElementDeclarationKind XR_DDXMLElementDeclarationKind
 #endif
 #ifndef NSXMLNotationDeclarationKind
-  #define NSXMLNotationDeclarationKind DDXMLNotationDeclarationKind
+  #define NSXMLNotationDeclarationKind XR_DDXMLNotationDeclarationKind
 #endif
 
 #ifndef NSXMLNodeOptionsNone
-  #define NSXMLNodeOptionsNone DDXMLNodeOptionsNone
+  #define NSXMLNodeOptionsNone XR_DDXMLNodeOptionsNone
 #endif
 #ifndef NSXMLNodeExpandEmptyElement
-  #define NSXMLNodeExpandEmptyElement DDXMLNodeExpandEmptyElement
+  #define NSXMLNodeExpandEmptyElement XR_DDXMLNodeExpandEmptyElement
 #endif
 #ifndef NSXMLNodeCompactEmptyElement
-  #define NSXMLNodeCompactEmptyElement DDXMLNodeCompactEmptyElement
+  #define NSXMLNodeCompactEmptyElement XR_DDXMLNodeCompactEmptyElement
 #endif
 #ifndef NSXMLNodePrettyPrint
-  #define NSXMLNodePrettyPrint DDXMLNodePrettyPrint
+  #define NSXMLNodePrettyPrint XR_DDXMLNodePrettyPrint
 #endif
 
 #endif // #if TARGET_OS_IPHONE
@@ -111,11 +111,11 @@
 // The parsing, creation, storage, etc of the xml tree is all done via libxml.
 // This is a fast low-level C library that's been around for ages, and comes pre-installed on Mac OS X and iOS.
 // KissXML provides an easy-to-use Objective-C library atop libxml.
-// So a DDXMLNode, DDXMLElement, or DDXMLDocument are simply objective-c objects
+// So a XR_DDXMLNode, XR_DDXMLElement, or XR_DDXMLDocument are simply objective-c objects
 // with pointers to the underlying libxml C structure.
 // Then only time you need to be aware of any of this is when it comes to equality.
 // In order to maximize speed and provide read-access thread-safety,
-// the library may create multiple DDXML wrapper objects that point to the same underlying xml node.
+// the library may create multiple XR_DDXML wrapper objects that point to the same underlying xml node.
 // So don't assume you can test for equality with "==".
 // Instead use the isEqual method (as you should generally do with objects anyway).
 // 
@@ -128,13 +128,13 @@
 //   <latte/>
 // </starbucks>
 // 
-// Imagine you have a DDXMLNode corresponding to the starbucks node,
-// and you have a DDXMLNode corresponding to the latte node.
+// Imagine you have a XR_DDXMLNode corresponding to the starbucks node,
+// and you have a XR_DDXMLNode corresponding to the latte node.
 // Now imagine you release the starbucks node, but you retain a reference to the latte node.
 // What happens?
 // Well the latte node is a part of the xml tree heirarchy.
 // So if the latte node is still around, the xml tree heirarchy must stick around as well.
-// So even though the DDXMLNode corresponding to the starbucks node may get deallocated,
+// So even though the XR_DDXMLNode corresponding to the starbucks node may get deallocated,
 // the underlying xml tree structure won't be freed until the latte node gets dealloacated.
 // 
 // In general, this means that KissXML remains thread-safe when reading and processing a tree.
@@ -154,11 +154,11 @@
 //   <latte/>
 // </starbucks>
 // 
-// Imagine you have a DDXMLNode corresponding to the starbucks node,
-// and you have a DDXMLNode corresponding to the latte node.
+// Imagine you have a XR_DDXMLNode corresponding to the starbucks node,
+// and you have a XR_DDXMLNode corresponding to the latte node.
 // What happens if you invoke [starbucks removeChildAtIndex:0]?
 // Well the undelying xml tree will remove the latte node, and release the associated memory.
-// And what if you still have a reference to the DDXMLNode that corresponds to the latte node?
+// And what if you still have a reference to the XR_DDXMLNode that corresponds to the latte node?
 // Well the short answer is that you shouldn't use it. At all.
 // This is pretty obvious when you think about it from the context of this simple example.
 // But in the real world, you might have multiple threads running in parallel,
@@ -181,10 +181,10 @@
 // this macro will tell you when you're trying to access a now-dangling pointer.
 // 
 // How does it work?
-// Well everytime a DDXML wrapper object is created atop a libxml structure,
+// Well everytime a XR_DDXML wrapper object is created atop a libxml structure,
 // it marks the linkage in a table.
 // And everytime a libxml structure is freed, it destorys all corresponding linkages in the table.
-// So everytime a DDXML wrapper objects is about to dereference it's pointer,
+// So everytime a XR_DDXML wrapper objects is about to dereference it's pointer,
 // it first ensures the linkage still exists in the table.
 // 
 // Set to 1 to enable
@@ -193,7 +193,7 @@
 // The debugging macro adds a significant amount of overhead, and should NOT be enabled on production builds.
 
 #if DEBUG
-  #define DDXML_DEBUG_MEMORY_ISSUES 0
+  #define XR_DDXML_DEBUG_MEMORY_ISSUES 0
 #else
-  #define DDXML_DEBUG_MEMORY_ISSUES 0 // Don't change me!
+  #define XR_DDXML_DEBUG_MEMORY_ISSUES 0 // Don't change me!
 #endif

@@ -35,12 +35,12 @@
 
 @implementation KFEpubParser
 
-- (KFEpubKitBookType)bookTypeFromDocument:(DDXMLDocument *)document
+- (KFEpubKitBookType)bookTypeFromDocument:(XR_DDXMLDocument *)document
 {
     KFEpubKitBookType bookType = KFEpubKitBookTypeUnknown;
     
-    DDXMLElement *root  = [document rootElement];
-    DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
+    XR_DDXMLElement *root  = [document rootElement];
+    XR_DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
     defaultNamespace.name = @"default";
     
     NSString *ePubVersionString = [[[[root nodesForXPath:@"//default:package[1]" error:nil] firstObject] attributeForName:@"version"] stringValue];
@@ -62,7 +62,7 @@
     NSURL *containerURL = [[baseURL URLByAppendingPathComponent:@"META-INF"] URLByAppendingPathComponent:@"sinf.xml"];
     NSError *error = nil;
     NSString *content = [NSString stringWithContentsOfURL:containerURL encoding:NSUTF8StringEncoding error:&error];
-    DDXMLDocument *document = [[DDXMLDocument alloc] initWithXMLString:content options:kNilOptions error:&error];
+    XR_DDXMLDocument *document = [[XR_DDXMLDocument alloc] initWithXMLString:content options:kNilOptions error:&error];
     
     if (error)
     {
@@ -86,16 +86,16 @@
     NSURL *containerURL = [[baseURL URLByAppendingPathComponent:@"META-INF"] URLByAppendingPathComponent:@"container.xml"];
     
     NSString *content = [NSString stringWithContentsOfURL:containerURL encoding:NSUTF8StringEncoding error:&error];
-    DDXMLDocument *document = [[DDXMLDocument alloc] initWithXMLString:content options:kNilOptions error:&error];
-    DDXMLElement *root  = [document rootElement];
+    XR_DDXMLDocument *document = [[XR_DDXMLDocument alloc] initWithXMLString:content options:kNilOptions error:&error];
+    XR_DDXMLElement *root  = [document rootElement];
     
-    DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
+    XR_DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
     defaultNamespace.name = @"default";
     NSArray* objectElements = [root nodesForXPath:@"//default:container/default:rootfiles/default:rootfile" error:&error];
     
     NSUInteger count = 0;
     NSString *value = nil;
-    for (DDXMLElement* xmlElement in objectElements)
+    for (XR_DDXMLElement* xmlElement in objectElements)
     {
         value = [[xmlElement attributeForName:@"full-path"] stringValue];
         count++;
@@ -117,11 +117,11 @@
 }
 
 
-- (NSString *)coverPathComponentFromDocument:(DDXMLDocument *)document
+- (NSString *)coverPathComponentFromDocument:(XR_DDXMLDocument *)document
 {
     NSString *coverPath;
-    DDXMLElement *root  = [document rootElement];
-    DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
+    XR_DDXMLElement *root  = [document rootElement];
+    XR_DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
     defaultNamespace.name = @"default";
     NSArray *metaNodes = [root nodesForXPath:@"//default:item[@properties='cover-image']" error:nil];
     
@@ -134,10 +134,10 @@
     {
         NSString *coverItemId;
         
-        DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
+        XR_DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
         defaultNamespace.name = @"default";
         metaNodes = [root nodesForXPath:@"//default:meta" error:nil];
-        for (DDXMLElement *xmlElement in metaNodes)
+        for (XR_DDXMLElement *xmlElement in metaNodes)
         {
             if ([[xmlElement attributeForName:@"name"].stringValue compare:@"cover" options:NSCaseInsensitiveSearch] == NSOrderedSame)
             {
@@ -151,11 +151,11 @@
         }
         else
         {
-            DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
+            XR_DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
             defaultNamespace.name = @"default";
             NSArray *itemNodes = [root nodesForXPath:@"//default:item" error:nil];
             
-            for (DDXMLElement *itemElement in itemNodes)
+            for (XR_DDXMLElement *itemElement in itemNodes)
             {
                 if ([[itemElement attributeForName:@"id"].stringValue compare:coverItemId options:NSCaseInsensitiveSearch] == NSOrderedSame)
                 {
@@ -170,20 +170,20 @@
 
 
 
-- (NSDictionary *)metaDataFromDocument:(DDXMLDocument *)document
+- (NSDictionary *)metaDataFromDocument:(XR_DDXMLDocument *)document
 {
     NSMutableDictionary *metaData = [NSMutableDictionary new];
-    DDXMLElement *root  = [document rootElement];
-    DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
+    XR_DDXMLElement *root  = [document rootElement];
+    XR_DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
     defaultNamespace.name = @"default";
     NSArray *metaNodes = [root nodesForXPath:@"//default:package/default:metadata" error:nil];
     
     if (metaNodes.count == 1)
     {
-        DDXMLElement *metaNode = metaNodes[0];
+        XR_DDXMLElement *metaNode = metaNodes[0];
         NSArray *metaElements = metaNode.children;
 
-        for (DDXMLElement* xmlElement in metaElements)
+        for (XR_DDXMLElement* xmlElement in metaElements)
         {
             if ([self isValidNode:xmlElement])
             {
@@ -200,20 +200,20 @@
 }
 
 
-- (NSArray *)spineFromDocument:(DDXMLDocument *)document
+- (NSArray *)spineFromDocument:(XR_DDXMLDocument *)document
 {
     NSMutableArray *spine = [NSMutableArray new];
-    DDXMLElement *root  = [document rootElement];
-    DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
+    XR_DDXMLElement *root  = [document rootElement];
+    XR_DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
     defaultNamespace.name = @"default";
     NSArray *spineNodes = [root nodesForXPath:@"//default:package/default:spine" error:nil];
     
     if (spineNodes.count == 1)
     {
-        DDXMLElement *spineElement = spineNodes[0];
+        XR_DDXMLElement *spineElement = spineNodes[0];
         
         NSArray *spineElements = spineElement.children;
-        for (DDXMLElement* xmlElement in spineElements)
+        for (XR_DDXMLElement* xmlElement in spineElements)
         {
             if ([self isValidNode:xmlElement])
             {
@@ -229,18 +229,18 @@
     return spine;
 }
 
-- (NSDictionary *)manifestFromDocument:(DDXMLDocument *)document
+- (NSDictionary *)manifestFromDocument:(XR_DDXMLDocument *)document
 {
     NSMutableDictionary *manifest = [NSMutableDictionary new];
-    DDXMLElement *root  = [document rootElement];
-    DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
+    XR_DDXMLElement *root  = [document rootElement];
+    XR_DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
     defaultNamespace.name = @"default";
     NSArray *manifestNodes = [root nodesForXPath:@"//default:package/default:manifest" error:nil];
     
     if (manifestNodes.count == 1)
     {
-        NSArray *itemElements = ((DDXMLElement *)manifestNodes[0]).children;
-        for (DDXMLElement* xmlElement in itemElements)
+        NSArray *itemElements = ((XR_DDXMLElement *)manifestNodes[0]).children;
+        for (XR_DDXMLElement* xmlElement in itemElements)
         {
             if ([self isValidNode:xmlElement] && xmlElement.attributes)
             {
@@ -273,21 +273,21 @@
 }
 
 
-- (NSArray *)guideFromDocument:(DDXMLDocument *)document
+- (NSArray *)guideFromDocument:(XR_DDXMLDocument *)document
 {
     NSMutableArray *guide = [NSMutableArray new];
-    DDXMLElement *root  = [document rootElement];
+    XR_DDXMLElement *root  = [document rootElement];
     
-    DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
+    XR_DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
     defaultNamespace.name = @"default";
     NSArray *guideNodes = [root nodesForXPath:@"//default:package/default:guide" error:nil];
     
     if (guideNodes.count == 1)
     {
-        DDXMLElement *guideElement = guideNodes[0];
+        XR_DDXMLElement *guideElement = guideNodes[0];
         NSArray *referenceElements = guideElement.children;
         
-        for (DDXMLElement* xmlElement in referenceElements)
+        for (XR_DDXMLElement* xmlElement in referenceElements)
         {
             if ([self isValidNode:xmlElement])
             {
@@ -321,13 +321,13 @@
     return guide;
 }
 
-- (NSArray*)ePub2ChaptersFromDocument:(DDXMLDocument *)document
+- (NSArray*)ePub2ChaptersFromDocument:(XR_DDXMLDocument *)document
 {
     NSArray *chapters = [NSMutableArray new];
-    DDXMLElement *root  = [document rootElement];
+    XR_DDXMLElement *root  = [document rootElement];
     
     NSError *error;
-    DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
+    XR_DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
     defaultNamespace.name = @"default";
     NSArray *chaptersNodes = [root nodesForXPath:@"//default:navMap" error:&error];
     
@@ -346,22 +346,22 @@
     return chapters;
 }
 
-- (NSArray*)ePub2ChaptersFromNode:(DDXMLNode*)navNapMode level:(NSInteger)level
+- (NSArray*)ePub2ChaptersFromNode:(XR_DDXMLNode*)navNapMode level:(NSInteger)level
 {
     NSMutableArray *chapters = [NSMutableArray array];
     NSArray *nodes = [navNapMode nodesForXPath:@"default:navPoint" error:nil];
     if (nodes.count == 0) return nil;
     
-    for (DDXMLElement *node in nodes) {
+    for (XR_DDXMLElement *node in nodes) {
         if (![self isValidNode:node]) continue;
         
         NSString *identifier = [[node attributeForName:@"id"] stringValue];
         NSInteger playOrder = [[[node attributeForName:@"playOrder"] stringValue] integerValue];
         
-        DDXMLElement *navLabel = [[node nodesForXPath:@"default:navLabel/default:text" error:nil] firstObject];
+        XR_DDXMLElement *navLabel = [[node nodesForXPath:@"default:navLabel/default:text" error:nil] firstObject];
         NSString *label = [[[navLabel elementsForName:@"text"] firstObject] stringValue];
         
-        DDXMLElement *contents = [[node nodesForXPath:@"default:content" error:nil] firstObject];
+        XR_DDXMLElement *contents = [[node nodesForXPath:@"default:content" error:nil] firstObject];
         NSString *src = [[contents attributeForName:@"src"] stringValue];
         
         NSDictionary *chapter = @{@"id" : identifier,
@@ -377,20 +377,20 @@
     return chapters;
 }
 
-- (NSArray*)ePub3ChaptersFromDocument:(DDXMLDocument *)document
+- (NSArray*)ePub3ChaptersFromDocument:(XR_DDXMLDocument *)document
 {
     NSArray *chapters = [NSMutableArray new];
-    DDXMLElement *root  = [document rootElement];
+    XR_DDXMLElement *root  = [document rootElement];
     
     NSError *error;
-    DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
+    XR_DDXMLNode *defaultNamespace = [root namespaceForPrefix:@""];
     defaultNamespace.name = @"default";
     
-    DDXMLElement *navNode = [[root nodesForXPath:@"//default:nav" error:&error] firstObject];
+    XR_DDXMLElement *navNode = [[root nodesForXPath:@"//default:nav" error:&error] firstObject];
     
     if ([self isValidNode:navNode])
     {
-        DDXMLElement *chapterContainerNode = [[navNode nodesForXPath:@"default:ol" error:&error] firstObject];
+        XR_DDXMLElement *chapterContainerNode = [[navNode nodesForXPath:@"default:ol" error:&error] firstObject];
         chapters = [self ePub3ChaptersFromNode:chapterContainerNode level:0];
     }
     else
@@ -404,16 +404,16 @@
     return chapters;
 }
 
-- (NSArray*)ePub3ChaptersFromNode:(DDXMLNode*)navNapMode level:(NSInteger)level
+- (NSArray*)ePub3ChaptersFromNode:(XR_DDXMLNode*)navNapMode level:(NSInteger)level
 {
     NSMutableArray *chapters = [NSMutableArray array];
     NSArray *nodes = [navNapMode nodesForXPath:@"default:li" error:nil];
     if (nodes.count == 0) return nil;
     
-    for (DDXMLElement *node in nodes) {
+    for (XR_DDXMLElement *node in nodes) {
         if (![self isValidNode:node]) continue;
         
-        DDXMLElement *contents = [[node nodesForXPath:@"default:a" error:nil] firstObject];
+        XR_DDXMLElement *contents = [[node nodesForXPath:@"default:a" error:nil] firstObject];
         
         NSString *label = [contents stringValue];
         NSString *src = [[contents attributeForName:@"href"] stringValue];
@@ -423,7 +423,7 @@
                                   @"level" : @(level)};
         [chapters addObject:chapter];
         
-        DDXMLElement *subChaptersContainerNode = [[node nodesForXPath:@"default:ol" error:nil] firstObject];
+        XR_DDXMLElement *subChaptersContainerNode = [[node nodesForXPath:@"default:ol" error:nil] firstObject];
         NSArray *subChapters = [self ePub3ChaptersFromNode:subChaptersContainerNode level:level+1];
         if (subChapters.count) [chapters addObjectsFromArray:subChapters];
     }
@@ -431,9 +431,9 @@
     return chapters;
 }
 
-- (BOOL)isValidNode:(DDXMLElement *)node
+- (BOOL)isValidNode:(XR_DDXMLElement *)node
 {
-    return node.kind != DDXMLCommentKind;
+    return node.kind != XR_DDXMLCommentKind;
 }
 
 

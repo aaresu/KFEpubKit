@@ -1,5 +1,5 @@
-#import "DDXMLPrivate.h"
-#import "NSString+DDXML.h"
+#import "XR_DDXMLPrivate.h"
+#import "NSString+XR_DDXML.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -23,24 +23,24 @@
  * https://github.com/robbiehanson/KissXML/wiki/Reference
 **/
 
-@implementation DDXMLDocument
+@implementation XR_DDXMLDocument
 
 /**
- * Returns a DDXML wrapper object for the given primitive node.
+ * Returns a XR_DDXML wrapper object for the given primitive node.
  * The given node MUST be non-NULL and of the proper type.
 **/
-+ (id)nodeWithDocPrimitive:(xmlDocPtr)doc owner:(DDXMLNode *)owner
++ (id)nodeWithDocPrimitive:(xmlDocPtr)doc owner:(XR_DDXMLNode *)owner
 {
-	return [[DDXMLDocument alloc] initWithDocPrimitive:doc owner:owner];
+	return [[XR_DDXMLDocument alloc] initWithDocPrimitive:doc owner:owner];
 }
 
-- (id)initWithDocPrimitive:(xmlDocPtr)doc owner:(DDXMLNode *)inOwner
+- (id)initWithDocPrimitive:(xmlDocPtr)doc owner:(XR_DDXMLNode *)inOwner
 {
 	self = [super initWithPrimitive:(xmlKindPtr)doc owner:inOwner];
 	return self;
 }
 
-+ (id)nodeWithPrimitive:(xmlKindPtr)kindPtr owner:(DDXMLNode *)owner
++ (id)nodeWithPrimitive:(xmlKindPtr)kindPtr owner:(XR_DDXMLNode *)owner
 {
 	// Promote initializers which use proper parameter types to enable compiler to catch more mistakes
 	NSAssert(NO, @"Use nodeWithDocPrimitive:owner:");
@@ -48,7 +48,7 @@
 	return nil;
 }
 
-- (id)initWithPrimitive:(xmlKindPtr)kindPtr owner:(DDXMLNode *)inOwner
+- (id)initWithPrimitive:(xmlKindPtr)kindPtr owner:(XR_DDXMLNode *)inOwner
 {
 	// Promote initializers which use proper parameter types to enable compiler to catch more mistakes.
 	NSAssert(NO, @"Use initWithDocPrimitive:owner:");
@@ -57,9 +57,9 @@
 }
 
 /**
- * Initializes and returns a DDXMLDocument object created from an NSData object.
+ * Initializes and returns a XR_DDXMLDocument object created from an NSData object.
  * 
- * Returns an initialized DDXMLDocument object, or nil if initialization fails
+ * Returns an initialized XR_DDXMLDocument object, or nil if initialization fails
  * because of parsing errors or other reasons.
 **/
 - (id)initWithXMLString:(NSString *)string options:(NSUInteger)mask error:(NSError **)error
@@ -70,34 +70,34 @@
 }
 
 /**
- * Initializes and returns a DDXMLDocument object created from an NSData object.
+ * Initializes and returns a XR_DDXMLDocument object created from an NSData object.
  * 
- * Returns an initialized DDXMLDocument object, or nil if initialization fails
+ * Returns an initialized XR_DDXMLDocument object, or nil if initialization fails
  * because of parsing errors or other reasons.
 **/
 - (id)initWithData:(NSData *)data options:(NSUInteger)mask error:(NSError **)error
 {
 	if (data == nil || [data length] == 0)
 	{
-		if (error) *error = [NSError errorWithDomain:@"DDXMLErrorDomain" code:0 userInfo:nil];
+		if (error) *error = [NSError errorWithDomain:@"XR_DDXMLErrorDomain" code:0 userInfo:nil];
 		
 		return nil;
 	}
 	
-	// Even though xmlKeepBlanksDefault(0) is called in DDXMLNode's initialize method,
+	// Even though xmlKeepBlanksDefault(0) is called in XR_DDXMLNode's initialize method,
 	// it has been documented that this call seems to get reset on the iPhone:
 	// http://code.google.com/p/kissxml/issues/detail?id=8
 	// 
 	// Therefore, we call it again here just to be safe.
 	xmlKeepBlanksDefault(0);
 	
-	[DDXMLNode installErrorHandlersInThread];
+	[XR_DDXMLNode installErrorHandlersInThread];
 	xmlDocPtr doc = xmlParseMemory([data bytes], (int)data.length);
 	if (doc == NULL)
 	{
-		NSError *lastError = [DDXMLNode lastError];
+		NSError *lastError = [XR_DDXMLNode lastError];
 		NSDictionary *userInfo = lastError ? [NSDictionary dictionaryWithObjectsAndKeys:lastError, NSUnderlyingErrorKey, nil] : nil;
-		if (error) *error = [NSError errorWithDomain:@"DDXMLErrorDomain" code:1 userInfo:userInfo];
+		if (error) *error = [NSError errorWithDomain:@"XR_DDXMLErrorDomain" code:1 userInfo:userInfo];
 		
 		return nil;
 	}
@@ -108,10 +108,10 @@
 /**
  * Returns the root element of the receiver.
 **/
-- (DDXMLElement *)rootElement
+- (XR_DDXMLElement *)rootElement
 {
-#if DDXML_DEBUG_MEMORY_ISSUES
-	DDXMLNotZombieAssert();
+#if XR_DDXML_DEBUG_MEMORY_ISSUES
+	XR_DDXMLNotZombieAssert();
 #endif
 	
 	xmlDocPtr doc = (xmlDocPtr)genericPtr;
@@ -121,7 +121,7 @@
 	xmlNodePtr rootNode = xmlDocGetRootElement(doc);
 	
 	if (rootNode != NULL)
-		return [DDXMLElement nodeWithElementPrimitive:rootNode owner:self];
+		return [XR_DDXMLElement nodeWithElementPrimitive:rootNode owner:self];
 	else
 		return nil;
 }
